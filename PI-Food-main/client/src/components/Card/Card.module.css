@@ -1,0 +1,70 @@
+.cardContainer {
+    display: flex;
+    flex-direction: column;
+    background-color: #f3dabceb;
+    border: 0.2rem solid rgba(128, 128, 128, 0.297);
+    border-radius: 0.8rem;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 1.2rem;
+    margin: 1rem;
+    width: 24vw;
+}
+
+.cardContainer:hover {
+    transform: scale(1.015);
+}
+
+.cardContainer img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 0.1rem solid rgba(0, 0, 0, 0.176);
+    border-radius: 0.8rem;
+}
+
+.hSContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hSContainer p {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0.6rem;
+}
+
+.cardContainer h2 {
+    font-size: 1.5rem;
+    margin: 0.3rem;
+}
+
+.linkContainer {
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.dietList {
+    display: flex;
+    list-style: none;
+    flex-wrap: wrap;
+    width: 65%;
+    justify-content: flex-start;
+}
+
+.dietList li {
+    background-color:#FFF6F0 ;
+    color: #AA170D;
+    border: 1px solid grey;
+    border-radius: 0.8rem;
+    padding: 0.4rem;
+    margin: 0.2rem;
+    height:fit-content;
+    width: fit-content;
+}
+
+.dietList li:hover {
+    color: white;
+    background-color: black;
+}

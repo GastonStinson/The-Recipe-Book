@@ -1,0 +1,41 @@
+.landingContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url('https://imagenes.20minutos.es/files/og_thumbnail_1900/uploads/imagenes/2023/04/03/mesa-llena-de-comida-arabe.jpeg');
+    width: 100vw;
+    height: 100vh;
+    text-align: center;
+}
+
+.centerContainer {
+    background-color: antiquewhite;
+    border: 0.2rem solid grey;
+    border-radius: 2rem;
+    padding: 0.6rem 2rem;
+    width: max-content;
+}
+
+.centerContainer h1 {
+    font-size: 4rem;
+    background: #ccc;
+    background: linear-gradient(rgb(208, 145, 79), rgb(59, 52, 52));
+
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+}
+
+.centerContainer button {
+    background-color:burlywood;
+    color: black;
+    padding: 10px 1rem;
+    border: none;
+    border-radius: 0.35rem;
+    cursor: pointer;
+}
+
+.centerContainer button:hover {
+    background-color: rgba(222, 149, 54, 0.3);
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+}

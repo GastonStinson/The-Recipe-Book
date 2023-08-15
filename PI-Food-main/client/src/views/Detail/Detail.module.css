@@ -1,0 +1,98 @@
+.mainContainer {
+    background-color: #FCD7AD
+}
+
+.detailContainer {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: #f5f5f5;
+    border: 0.1rem solid grey;
+    border-radius: 1rem;
+  }
+  
+  .detailTitle {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .detailImage {
+    max-width: 100%;
+    border-radius: 1rem;
+    border: 1px solid black;
+    height: auto;
+    margin-bottom: 10px;
+  }
+  
+  .detailId {
+    font-size: 14px;
+    margin-bottom: 5px;
+    text-align: center;
+  }
+  
+  .detailRecipeTitle {
+    font-size: 28px;
+    margin-bottom: 10px;
+  }
+  
+  .detailDescription {
+    font-size: 16px;
+    margin-bottom: 15px;
+  }
+  
+  .detailHealthScore {
+    font-size: 18px;
+    margin-bottom: 5px;
+  }
+
+  .divList {
+    border: 1px solid black;
+    border-radius: 0.8rem;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 1rem;
+    padding: 0.8rem;
+  }
+
+  .divList h3{
+    
+  }
+
+  .listaStep {
+   width: 80%;
+   
+  }
+
+  .detailDiets {
+    justify-content: center;
+  }
+  
+  .detailInstructions {
+    font-size: 16px;
+    margin-bottom: 15px;
+  }
+  
+  .detailDiets {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .detailDiet {
+    font-size: 14px;
+    margin-bottom: 5px;
+    background-color: antiquewhite;
+    border: 1px solid black;
+    padding: 0.4rem;
+    border-radius: 5px;
+    margin-right: 0.6rem;
+  }
+
+  .loading {
+    font-size: 5rem;
+  }

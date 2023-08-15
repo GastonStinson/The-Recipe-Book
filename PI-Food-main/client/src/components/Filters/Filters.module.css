@@ -1,0 +1,30 @@
+.filterContainer {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.2rem;
+}
+
+.filterContainer select {
+    margin: 0rem 0.3rem;
+    background-color: burlywood;
+    border: none;
+    border-radius: 0.6rem;
+    padding: 0.6rem;
+    display: flex;
+    align-items: center;
+}
+
+.filterContainer button {
+    background-color:burlywood;
+    color: black;
+    padding: 10px 1rem;
+    border: none;
+    border-radius: 0.35rem;
+    cursor: pointer;
+}
+
+.filterContainer button:hover {
+    background-color: rgba(222, 149, 54, 0.3);
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}

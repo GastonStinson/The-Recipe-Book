@@ -1,0 +1,92 @@
+.container {
+  background-image: url('https://oleico.com/wp-content/uploads/2020/04/original-f1b09253436d73567fe915b8d1831ee5.jpeg');
+  height: 110vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container h2 {
+  text-align: center;
+  font-size: 2.2rem;
+  margin: 2rem 0rem;
+  font-weight: 600;
+}
+
+.formContainer {
+    border: 0.14rem solid rgba(0, 0, 0, 0.216);
+    background-color: #f3dabce0;
+    border-radius: 0.8rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 1.2rem 2rem;
+  }
+  
+.formGroup {
+  margin-bottom: 1rem;
+}
+
+.formContainer label {
+  font-weight: 500;
+  margin: 0.1rem 0.3rem;
+}
+
+.formContainer input {
+  width: 100%;
+  padding: 0.4rem;
+  border: 0.1rem solid rgba(0, 0, 0, 0.658);
+  border-radius: 0.6rem;
+  margin: 0.25rem 0rem;
+}
+
+.formContainer span {
+  color: red;
+  font-size: 0.6rem;
+  margin-top: 0.4rem;
+  display: block;
+}
+
+.formContainer button {
+  background-color:burlywood;
+  color: black;
+  padding: 10px 1rem;
+  border: none;
+  border-radius: 0.35rem;
+  cursor: pointer;
+  margin: 1rem 0rem;
+}
+
+.formContainer button:hover {
+  background-color: rgba(222, 149, 54, 0.3);
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+}
+
+.selectBox {
+  display: block;
+  font-size: 16px;
+  font-weight: 400;
+  color: #444;
+  padding: .4em 1.4em .3em .8em;
+  width: 400px;
+  max-width: 100%; 
+  box-sizing: border-box;
+  border: 0.12 solid #8f8989;
+  box-shadow: 0 1px 0 1px rgba(0,0,0,.03);
+  border-radius: 0.6rem;
+  background-color: #fff;
+  overflow: hidden;
+}
+
+.selectBox::-ms-expand {
+  display: none;
+}
+
+.selectBox:focus {
+  outline: 0;
+  border-color: #7bbaff;
+  box-shadow: 0 0 0 1px rgba(0, 121, 250, .3);
+}
+
+.error {
+  color: red;
+  margin: 0rem;
+}
