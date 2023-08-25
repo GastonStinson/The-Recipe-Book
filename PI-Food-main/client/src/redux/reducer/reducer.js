@@ -1,14 +1,29 @@
-import { GET_RECIPES, GET_BY_NAME, GET_DIETS, GET_BY_ID, FILTER_BY_ORIGIN, FILTER_BY_DIET, RESET_FILTER } from "../action-types/action-types";
+import {
+    GET_RECIPES,
+    GET_BY_NAME,
+    GET_DIETS,
+    FILTER_BY_ORIGIN,
+    FILTER_BY_DIET,
+    RESET_FILTER,
+    ORDER_ALPH_AZ,
+    ORDER_ALPH_ZA,
+    ORDER_HS_ASC,
+    ORDER_HS_DES,
+    FIRST_PAGE,
+    PAGINADO
+} from "../action-types/action-types";
 
 let initialState = {
     allRecipes: [],
     allRecipesCopy: [],
     diets: [],
-    recipeById: {}
+    page: 1
 }
 
 function rootReducer(state = initialState, action) {
     switch (action.type) {
+
+        //TRAER RECETAS DESDE EL SERVER
         case GET_RECIPES:
             return {
                 ...state,
@@ -16,24 +31,23 @@ function rootReducer(state = initialState, action) {
                 allRecipesCopy: action.payload
             }
 
+        //TRAER SOLO LA RECETA QUE COINCIDA CON EL VALUE DE LA SEARCH BAR 
         case GET_BY_NAME:
             return {
                 ...state,
                 allRecipes: action.payload
             }
 
+
+        //TRAER DIETS DESDE EL SERVER
         case GET_DIETS:
             return {
                 ...state,
                 diets: action.payload
             }
 
-        case GET_BY_ID:
-            return {
-                ...state,
-                recipeById: action.payload
-            }
 
+        //----FILTROS-----
         case RESET_FILTER:
             return {
                 ...state,
@@ -41,9 +55,10 @@ function rootReducer(state = initialState, action) {
             }
 
         case FILTER_BY_DIET: {
-            const selectedDiet = action.payload;
-            const filteredByDiet = selectedDiet === 'All Diets' ? state.allRecipes :
-                state.allRecipes.filter((recipe) => recipe.diets.includes(selectedDiet))
+            const selection = action.payload;
+            const filteredByDiet = state.allRecipes.filter((recipe) =>
+                recipe.diets.includes(selection)
+            );
             return {
                 ...state,
                 allRecipes: filteredByDiet
@@ -51,22 +66,51 @@ function rootReducer(state = initialState, action) {
         }
 
         case FILTER_BY_ORIGIN: {
-            const selectedOrigin = action.payload;
+            return {
+                ...state,
+                allRecipes: action.payload
+            }
+        }
 
-            if (selectedOrigin === 'DB') {
-                const fromDB = state.allRecipes.filter(recipe => recipe.id.toString().length === 36)
-                return {
-                    ...state,
-                    allRecipes: fromDB
-                }
-            } else if (selectedOrigin === 'API') {
-                const fromAPI = state.allRecipes.filter(recipe => recipe.id.toString().length < 36)
-                return {
-                    ...state,
-                    allRecipes: fromAPI
-                }
-            } else {
-                return
+
+        //----ORDER----
+        case ORDER_ALPH_AZ:
+            return {
+                ...state,
+                allRecipes: [...state.allRecipes.sort((a, b) => a.title.localeCompare(b.title))],
+            };
+
+        case ORDER_ALPH_ZA:
+            return {
+                ...state,
+                allRecipes: [...state.allRecipes.sort((a, b) => b.title.localeCompare(a.title))],
+            };
+
+        case ORDER_HS_ASC: {
+            return {
+                ...state,
+                allRecipes: [...state.allRecipes.sort((a, b) => b.healthScore - a.healthScore)]
+            }
+        }
+
+        case ORDER_HS_DES: {
+            return {
+                ...state,
+                allRecipes: [...state.allRecipes.sort((a, b) => a.healthScore - b.healthScore)]
+            }
+        }
+
+        case PAGINADO: {
+            return {
+                ...state,
+                page: action.payload
+            }
+        }
+
+        case FIRST_PAGE: {
+            return {
+                ...state,
+                page: 1
             }
         }
 

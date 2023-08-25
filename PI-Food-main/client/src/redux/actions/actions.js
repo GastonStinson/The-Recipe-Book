@@ -1,11 +1,11 @@
 import axios from 'axios'
-import { FILTER_BY_ORIGIN } from '../action-types/action-types'
+import { GET_RECIPES, PAGINADO, FIRST_PAGE, GET_BY_NAME, GET_DIETS, FILTER_BY_ORIGIN, ORDER_ALPH_AZ, ORDER_ALPH_ZA, ORDER_HS_ASC, ORDER_HS_DES, FILTER_BY_DIET, RESET_FILTER } from '../action-types/action-types'
 
 export function getRecipes() {
     return async function (dispatch) {
         const { data } = await axios('http://localhost:3001/recipes')
         return dispatch({
-            type: 'GET_RECIPES',
+            type: GET_RECIPES,
             payload: data
         })
     }
@@ -15,7 +15,7 @@ export function getByName(title) {
     return async function (dispatch) {
         const { data } = await axios(`http://localhost:3001/recipes?title=${title}`)
         return dispatch({
-            type: 'GET_BY_NAME',
+            type: GET_BY_NAME,
             payload: data
         })
     }
@@ -25,17 +25,7 @@ export function getDiets() {
     return async function (dispatch) {
         const { data } = await axios('http://localhost:3001/diets')
         return dispatch({
-            type: 'GET_DIETS',
-            payload: data
-        })
-    }
-}
-
-export function getById(id) {
-    return async function (dispatch) {
-        const { data } = await axios(`http://localhost:3001/recipes/${id}`)
-        return dispatch({
-            type: 'GET_BY_ID',
+            type: GET_DIETS,
             payload: data
         })
     }
@@ -43,40 +33,61 @@ export function getById(id) {
 
 export function filterByDiet(selection) {
     return {
-        type: 'FILTER_BY_DIET',
+        type: FILTER_BY_DIET,
         payload: selection
     }
 }
 
 export function resetFilter() {
     return {
-        type: 'RESET_FILTER'
+        type: RESET_FILTER
     }
 }
 
-//export function filterOrigin(selection) {
-//    return async function (dispatch) {
-//        if (selection == 'All') return
-//        else if (selection == 'DB') {
-//            const { data } = await axios('http://localhost:3001/recipes/DB')
-//            return dispatch({
-//                type: 'FILTER_BY_ORIGIN',
-//                payload: data
-//            })
-//        } else if (selection == 'API') {
-//            const { data } = await axios('http://localhost:3001/recipes/API')
-//            return dispatch({
-//                type: 'FILTER_BY_ORIGIN',
-//                payload: data
-//            })
-//        }
-//    }
-//}
-
-export function filterOrigin(selection) {
+export function filterOrigin(data) {
     return {
         type: FILTER_BY_ORIGIN,
-        payload: selection
+        payload: data
     }
 }
 
+export const orderAlphAZ = () => {
+    return {
+        type: ORDER_ALPH_AZ
+    }
+}
+
+export const orderAlphZA = () => {
+    return {
+        type: ORDER_ALPH_ZA
+    }
+}
+export function orderHSAsc() {
+    return {
+        type: ORDER_HS_ASC
+    }
+}
+export function orderHSDes() {
+    return {
+        type: ORDER_HS_DES
+    }
+}
+
+export function paginado(direction, page) {
+    if (direction === 'prev') {
+        page = page - 1
+    } else if (direction === 'next') {
+        page = page + 1
+    }
+
+    return {
+        type: PAGINADO,
+        payload: page
+    }
+}
+
+export function firstPage() {
+    return {
+        type: FIRST_PAGE
+    }
+}

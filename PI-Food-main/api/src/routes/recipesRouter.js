@@ -6,9 +6,11 @@ const getRecipesBD = require('../controllers/getRecipesBD')
 const getRecipesAPI = require('../controllers/getRecipesAPI')
 const getRecipeById = require('../controllers/getRecipeById')
 const getRecipeBytitle = require('../controllers/getRecipeByTitle')
+const getRecipeByIdDB = require('../controllers/getRecipeByIdDB')
 
 //Ruta para buscar todas las recetas, si se nos pasa un titulo por Query, buscar por titulos
 router.get('/', async (req, res) => {
+    //Recibe el titulo de la receta por Query
     const { title } = req.query
     try {
         //Condicional para buscar por titulo
@@ -44,11 +46,14 @@ router.get('/', async (req, res) => {
 
 // -- RUTA DE BUSQUEDA POR ID --
 router.get('/:id', async (req, res) => {
-    const { id } = req.params
+    const { id } = req.params;
     try {
         //Buscar por ID dentro de la base de datos
-        const foundByIdDB = await Recipe.findOne({ where: { id: id } })
-        if (foundByIdDB) return res.status(200).json(foundByIdDB)
+        if (id.toString().length == 36) {
+            const foundByIdDB = await getRecipeByIdDB(id)
+
+            return res.status(200).json(foundByIdDB)
+        }
 
         //Buscar por ID en la API
         const foundById = await getRecipeById(id)
@@ -84,24 +89,6 @@ router.post('/', async (req, res) => {
         return res.status(200).send(`The recipe with the title "${title}" was successfully created!`)
     } catch (error) {
         return res.status(400).send(`Failed to create the recipe!! ` + error.message)
-    }
-})
-
-router.get('/DB', async (req, res) => {
-    try {
-        const recipesBD = await getRecipesBD();
-        return res.status(200).json(recipesBD)
-    } catch (error) {
-        return res.status(400).json(error.message)
-    }
-})
-
-router.get('/API', async (req, res) => {
-    try {
-        const recipesAPI = await getRecipesAPI();
-        return res.status(200).json(recipesAPI)
-    } catch (error) {
-        return res.status(400).json(error.message)
     }
 })
 

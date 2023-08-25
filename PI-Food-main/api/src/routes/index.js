@@ -11,7 +11,7 @@ const router = Router();
 
 /* Ruta Recipes */
 router.use('/recipes', recipesRouter);
-/* Ruta Diets*/
+/* Ruta Diets */
 router.use('/diets', dietsRouter);
 
 module.exports = router;

@@ -26,7 +26,6 @@ router.get('/', async (req, res) => {
             where: { name: element }
         }))
 
-
         return res.status(200).json(dietsArray)
     } catch (error) {
         return res.status(400).send("Error creating Diets")

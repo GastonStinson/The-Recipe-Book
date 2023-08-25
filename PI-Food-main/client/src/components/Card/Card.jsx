@@ -9,7 +9,7 @@ function Card({ recipe }) {
       <Link to={`/detail/${id}`} className={style.linkContainer}>
         <img src={image} alt="recipe" />
         <div className={style.hSContainer}>
-          <p> Haealth Score: {healthScore}</p>
+          <p> Health Score: {healthScore}</p>
           <svg
             width="24"
             height="24"
@@ -21,9 +21,9 @@ function Card({ recipe }) {
               d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"
               fill="#FFD600"
               stroke="#FFD600"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
           </svg>
         </div>

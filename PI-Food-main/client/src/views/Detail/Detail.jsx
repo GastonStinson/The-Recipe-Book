@@ -6,60 +6,96 @@ import BasicNavBar from "../../components/BasicNavBar/BasicNavBar";
 
 function Detail() {
   const { id } = useParams();
-  const [data, setData] = useState({});
   const [loading, setLoading] = useState(true);
-
-  const fetchData = async () => {
-    try {
-      const response = await axios(`http://localhost:3001/recipes/${id}`);
-      setData(response.data);
-      setLoading(false);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-      setLoading(false);
-    }
-  };
+  const [data, setData] = useState({});
 
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios(`http://localhost:3001/recipes/${id}`);
+        setData(response.data);
+        setLoading(false);
+        console.log(response.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        setLoading(false);
+      }
+    };
     fetchData();
+
     return setData({});
-  }, []);
+  }, [id]);
 
   return (
-    <div className={style.mainContainer}>
-      <div className={style.buttonContainer}>
-        <BasicNavBar />
-      </div>
-      {loading ? (
-        <p className={style.loading}>Loading...</p>
-      ) : (
-        <div className={style.detailContainer}>
-          <img className={style.detailImage} src={data.image} alt="recipe" />
-          <h5 className={style.detailId}>{data.id}</h5>
-          <h3 className={style.detailRecipeTitle}>{data.title}</h3>
-          <p className={style.detailDescription}>{data.description}</p>
-          <p className={style.detailHealthScore}>
-            Health Score: {data.healthScore}
-          </p>
-          <div className={style.divList}>
-            <h3>Step By Step</h3>
-            <ol className={style.listaStep}>
-              {data.analyzedInstructions[0].steps?.map((step) => (
-                <li key={Math.random(1, 10)} className={style.listItemStep}>
-                  {step.step}
-                </li>
-              ))}
-            </ol>
+    <div>
+      <BasicNavBar />
+      <div className={style.mainContainer}>
+        {loading ? (
+          <p className={style.loading}>Loading...</p>
+        ) : (
+          <div className={style.detailContainer}>
+            <div className={style.centerDetailContainer}>
+              <div className={style.leftContainer}>
+                <p className={style.detailId}>ID : {data.id}</p>
+                <h3 className={style.detailRecipeTitle}>{data.title}</h3>
+                <h6 className={style.detailHealthScore}>
+                  Health Score: <span>{data.healthScore}</span>
+                </h6>
+              </div>
+
+              <div className={style.rightContainer}>
+                <img
+                  className={style.detailImage}
+                  src={data.image}
+                  alt="recipe"
+                />
+              </div>
+            </div>
+
+            <div className={style.bottomContainer}>
+              <div className={style.detailDescription}>
+                <p>
+                  {
+                    //RENDERIZADO SUMMARY (HTML)
+                    data.summary
+                      ? (() => {
+                          const tempElement = document.createElement("div");
+                          tempElement.innerHTML = data.summary;
+                          return (
+                            tempElement.textContent || tempElement.innerText
+                          );
+                        })()
+                      : data.description
+                  }
+                </p>
+              </div>
+              <div className={style.divList}>
+                <h3>Step By Step</h3>
+                <ol className={style.listaStep}>
+                  {id.toString().length === 36
+                    ? data.stepByStep?.map((step, index) => (
+                        <li key={index} className={style.listItemStep}>
+                          {step}
+                        </li>
+                      ))
+                    : data.analyzedInstructions[0].steps?.map((step, index) => (
+                        <li key={index} className={style.listItemStep}>
+                          {step.step}
+                        </li>
+                      ))}
+                </ol>
+              </div>
+              <ul className={style.detailDiets}>
+                {data.diets?.map((diet, index) => (
+                  <li key={index} className={style.detailDiet}>
+                    {diet}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
-          <ul className={style.detailDiets}>
-            {data.diets?.map((diet) => (
-              <li key={Math.random(1, 10)} className={style.detailDiet}>
-                {diet}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 }

@@ -3,25 +3,58 @@ import {
   filterByDiet,
   resetFilter,
   filterOrigin,
+  orderAlphAZ,
+  orderAlphZA,
+  orderHSAsc,
+  orderHSDes,
+  firstPage,
 } from "../../redux/actions/actions";
 import style from "./Filters.module.css";
 
-function Filters({ diets }) {
+function Filters({ diets, allRecipes }) {
   const dispatch = useDispatch();
-
+  //MANEJADORES DE CAMBIOS FILTROS
   const handleSelectDiet = (event) => {
     event.preventDefault();
-    dispatch(resetFilter());
     dispatch(filterByDiet(event.target.value));
+    dispatch(firstPage());
   };
 
   const handleSelectOrigin = (event) => {
     event.preventDefault();
-    dispatch(resetFilter());
-    dispatch(filterOrigin(event.target.value));
+
+    if (event.target.value === "All Origin") {
+      return;
+    } else if (event.target.value === "DB") {
+      const filteredFromDB = allRecipes.filter(
+        (recipe) => recipe.id.toString().length === 36
+      );
+      return dispatch(filterOrigin(filteredFromDB));
+    } else if (event.target.value === "API") {
+      const filteredFromAPI = allRecipes.filter(
+        (recipe) => recipe.id.toString().length !== 36
+      );
+      return dispatch(filterOrigin(filteredFromAPI));
+    }
   };
 
-  const handleSelectOrder = (event) => {};
+  const handleSelectOrder = (event) => {
+    event.preventDefault();
+    if (event.target.value === "Alph. A/Z") {
+      dispatch(orderAlphAZ());
+    } else if (event.target.value === "Alph. Z/A") {
+      dispatch(orderAlphZA());
+    } else if (event.target.value === "HScore +/-") {
+      dispatch(orderHSAsc());
+    } else if (event.target.value === "HScore -/+") {
+      dispatch(orderHSDes());
+    }
+  };
+  //RESET FILTROS
+  const handleResetFilters = (event) => {
+    event.preventDefault();
+    dispatch(resetFilter());
+  };
 
   return (
     <div className={style.filterContainer}>
@@ -32,17 +65,18 @@ function Filters({ diets }) {
         ))}
       </select>
       <select name="selectOrigin" onChange={handleSelectOrigin}>
-        <option>Origin</option>
+        <option>All Origin</option>
         <option>DB</option>
         <option>API</option>
       </select>
       <select name="selectOrder" onChange={handleSelectOrder}>
         <option>Order</option>
-        <option>Alphabetically A/Z</option>
-        <option>Alphabetically Z/A</option>
-        <option>Health Score +/-</option>
-        <option>Health Score -/+</option>
+        <option>Alph. A/Z</option>
+        <option>Alph. Z/A</option>
+        <option>HScore +/-</option>
+        <option>HScore -/+</option>
       </select>
+      <button onClick={handleResetFilters}>Reset Filters</button>
     </div>
   );
 }

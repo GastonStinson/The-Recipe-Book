@@ -1,40 +1,47 @@
 import Cards from "../../components/Cards/Cards";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { getByName, getDiets, getRecipes } from "../../redux/actions/actions";
+import {
+  firstPage,
+  getByName,
+  getDiets,
+  getRecipes,
+  paginado,
+} from "../../redux/actions/actions";
 import NavBar from "../../components/NavBar/NavBar";
 import style from "./Home.module.css";
 import Filters from "../../components/Filters/Filters";
+import Intro from "../../components/Intro/Intro";
 
 function Home() {
   const dispatch = useDispatch();
   const allRecipes = useSelector((state) => state.allRecipes);
   const diets = useSelector((state) => state.diets);
+  const page = useSelector((state) => state.page);
 
   const [toSearch, setToSearch] = useState("");
 
   //IMPLEMENTACION PAGINADO QUE MUESTRA DE A 9 RECETAS POR PAGINA
-  const [currentPage, setCurrentPage] = useState(1);
+
   const recipesPerPage = 9;
 
-  const indexOfLastRecipe = currentPage * recipesPerPage;
+  const indexOfLastRecipe = page * recipesPerPage;
   const indexOfFirstRecipe = indexOfLastRecipe - recipesPerPage;
   const recipesToShow = allRecipes.slice(indexOfFirstRecipe, indexOfLastRecipe);
 
+  //CALCULO CANTIDAD DE PAGINAS NECESARIAS
   const totalPages = Math.ceil(allRecipes.length / recipesPerPage);
 
+  //MANEJADORES DE PAGINAS PREV Y NEXT
   function handlePrevPage() {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
+    dispatch(paginado("prev", page));
   }
 
   function handleNextPage() {
-    if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
-    }
+    dispatch(paginado("next", page));
   }
 
+  //FUNCIONES BARRA DE BUSQUEDA
   function handleChange(event) {
     setToSearch(event.target.value);
   }
@@ -42,6 +49,7 @@ function Home() {
   function handleSubmit(event) {
     event.preventDefault();
     dispatch(getByName(toSearch));
+    dispatch(firstPage());
   }
 
   useEffect(() => {
@@ -53,38 +61,18 @@ function Home() {
     <div>
       <NavBar handleChange={handleChange} handleSubmit={handleSubmit} />
       <div className={style.homeContainer}>
-        <div className={style.upperContainer}>
-          <div className={style.leftContainer}>
-            <h2>Fun and Easy, to become a Master Cook</h2>
-            <p>
-              Explora nuestra selección de recetas irresistibles. Desde clásicos
-              reconfortantes hasta platos audaces, nuestras instrucciones
-              detalladas y consejos expertos te guiarán en tu aventura
-              culinaria. Descubre el placer de cocinar y crear momentos
-              inolvidables alrededor de la mesa.
-            </p>
-          </div>
-          <div className={style.rightContainer}>
-            <img
-              src="https://images.healthshots.com/healthshots/en/uploads/2023/01/12145340/cooking.jpg"
-              alt="cooking"
-            />
-          </div>
-        </div>
+        <Intro />
         <div className={style.filterContainer}>
-          <Filters diets={diets} />
+          <Filters diets={diets} allRecipes={allRecipes} />
         </div>
         <Cards allRecipes={recipesToShow} />
 
         <div className={style.pagination}>
-          <button onClick={handlePrevPage} disabled={currentPage === 1}>
+          <button onClick={handlePrevPage} disabled={page === 1}>
             Prev
           </button>
-          <p> Page {currentPage}</p>
-          <button
-            onClick={handleNextPage}
-            disabled={currentPage === totalPages}
-          >
+          <p> Page {page}</p>
+          <button onClick={handleNextPage} disabled={page === totalPages}>
             Next
           </button>
         </div>

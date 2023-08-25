@@ -19,6 +19,7 @@
     border-radius: 0.8rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 1.2rem 2rem;
+    width: 28vw;
   }
   
 .formGroup {
@@ -48,11 +49,11 @@
 .formContainer button {
   background-color:burlywood;
   color: black;
-  padding: 10px 1rem;
+  padding: 1rem 2.2rem;
   border: none;
   border-radius: 0.35rem;
   cursor: pointer;
-  margin: 1rem 0rem;
+  margin: 1.2rem 0rem 0.6rem 12rem;
 }
 
 .formContainer button:hover {
@@ -60,7 +61,42 @@
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
 }
 
-.selectBox {
+.formContainer button:disabled {
+  background-color: grey;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+  cursor:default;
+}
+
+.checkboxContainer {
+  background-color: antiquewhite;
+  border: 0.1rem solid rgba(0, 0, 0, 0.284);
+  border-radius: 0.8rem;
+  padding: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.checkboxContainer li {
+  list-style: none;
+  margin: 0.1rem 0rem;
+  text-align: start;
+  width: fit-content;
+}
+
+.checkboxContainer label {
+  border: 0.1rem solid rgba(0, 0, 0, 0.451);
+  display: inline-block;
+  border-radius: 0.8rem;
+  padding: 0.6rem;
+  cursor: pointer;
+}
+
+.checkboxContainer input:checked + label {
+  background-color: green;
+} 
+
+
+/* .selectBox {
   display: block;
   font-size: 16px;
   font-weight: 400;
@@ -84,7 +120,7 @@
   outline: 0;
   border-color: #7bbaff;
   box-shadow: 0 0 0 1px rgba(0, 121, 250, .3);
-}
+} */
 
 .error {
   color: red;

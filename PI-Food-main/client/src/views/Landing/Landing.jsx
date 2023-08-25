@@ -6,7 +6,7 @@ function Landing() {
     <div className={style.landingContainer}>
       <div className={style.centerContainer}>
         <h1> The Recipe Book </h1>
-        <p> Your Favourite Recipe and more! </p>
+        <p> "Flavors Unleashed: A Gastronomic Adventure in Every Bite!" </p>
         <Link to="/home">
           <button>SEARCH NEW RECIPES</button>
         </Link>
