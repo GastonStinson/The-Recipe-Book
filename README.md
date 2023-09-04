@@ -2,12 +2,12 @@
 
 Este proyecto es un logro más en mi desarrollo como Full Stack Developer.
 
-🧑‍💻 # Para levantar el siguiente proyecto:
+🧑‍💻 Para levantar el siguiente proyecto:
  -  Clonar el repositorio.
  -  Hacer npm install en la carpeta client.
  -  Hacer npm install en la carpeta server.
 
-🔧 # Tecnologias utilizadas:
+🔧 Tecnologias utilizadas:
  -  Front-end: React, Javascript, CSS.
  -  Back-end: Node, Express.
  -  DataBase: Postrgres, Sequelize.    
