@@ -14,5 +14,6 @@ Este proyecto es un logro más en mi desarrollo como Full Stack Developer.
 
  Contacto:
   mail: gastonstinson00@gmail.com
+  
   LinkedIn: https://www.linkedin.com/in/gastonstinson
   
