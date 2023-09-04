@@ -11,3 +11,8 @@ Este proyecto es un logro más en mi desarrollo como Full Stack Developer.
  -  Front-end: React, Javascript, CSS.
  -  Back-end: Node, Express.
  -  DataBase: Postrgres, Sequelize.    
+
+ Contacto:
+  gastonstinson00@gmail.com
+  LinkedIn: https://www.linkedin.com/in/gastonstinson
+  
