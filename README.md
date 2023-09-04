@@ -13,6 +13,6 @@ Este proyecto es un logro más en mi desarrollo como Full Stack Developer.
  -  DataBase: Postrgres, Sequelize.    
 
  Contacto:
-  gastonstinson00@gmail.com
+  mail: gastonstinson00@gmail.com
   LinkedIn: https://www.linkedin.com/in/gastonstinson
   
