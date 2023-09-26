@@ -8,12 +8,12 @@ Este proyecto es un logro más en mi desarrollo como Full Stack Developer.
  -  Hacer npm install en la carpeta server.
 
 🔧 Tecnologias utilizadas:
- -  Front-end: React, Javascript, CSS.
- -  Back-end: Node, Express.
- -  DataBase: Postrgres, Sequelize.    
+ -  Front-end: React, Redux, Javascript, CSS.
+ -  Back-end: NodeJS, Express.
+ -  DataBase: PostgresSQL, Sequelize.    
 
  Contacto:
-  - mail: gastonstinson00@gmail.com
+  - Email: gastonstinson00@gmail.com
   
   - LinkedIn: https://www.linkedin.com/in/gastonstinson
   
